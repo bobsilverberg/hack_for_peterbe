@@ -9,9 +9,9 @@ import pytest
 pytestmark = pytest.mark.nondestructive
 
 
-def test_stay_open(base_url, selenium):
+def test_stay_open(base_url, selenium, request):
     """Open a page and stay there"""
     selenium.get(base_url)
-    for x in range(100):
-        selenium.title
-        time.sleep(30)
+    for x in range(request.config.getoption('--minutes')):
+        time.sleep(60)
+        print x, selenium.title
